@@ -15,6 +15,21 @@
  * @category    Stud.IP
  */
 
+// load legacy code for older Stud.IP-Versions
+require_once 'vendor/flexi/flexi.php';
+#$GLOBALS['template_factory_sb'] = new \Flexi_TemplateFactory(dirname(__FILE__) . '/compat/2.3/sidebar/templates');
+
+require_once 'compat/2.3/StudipArrayObject.php';
+require_once 'compat/2.3/Meetings_SimpleCollection.php';
+require_once 'compat/2.3/Meetings_SimpleORMapCollection.php';
+require_once 'compat/2.3/Meetings_SimpleORMap.php';
+require_once 'compat/2.3/Course.class.php';
+#require_once 'compat/2.3/Institute.class.php';
+
+#spl_autoload_register(function($class) {
+#    require_once 'compat/2.3/sidebar/'. $class . '.php';
+#});
+
 require_once __DIR__.'/vendor/autoload.php';
 
 use ElanEv\Model\CourseConfig;
@@ -57,11 +72,9 @@ class MeetingPlugin extends StudipPlugin implements StandardPlugin, SystemPlugin
         if (!$this->isActivated()) {
             return;
         }
-
-        if (!version_compare($GLOBALS['SOFTWARE_VERSION'], '2.3', '>')) {
-            $navigation = $this->getTabNavigation(Request::get('cid', $GLOBALS['SessSemName'][1]));
-            Navigation::insertItem('/course/'.self::NAVIGATION_ITEM_NAME, $navigation['VideoConference'], null);
-        }
+        
+        $navigation = $this->getTabNavigation(Request::get('cid', $GLOBALS['SessSemName'][1]));
+        Navigation::insertItem('/course/'.self::NAVIGATION_ITEM_NAME, $navigation['video-conferences'], null);
     }
 
 	public function getPluginName()

@@ -11,7 +11,7 @@ namespace ElanEv\Model;
  * @property string $title        The title and label for navigation items
  * @property string $introduction The introductory text
  */
-class CourseConfig extends \SimpleORMap
+class CourseConfig extends \Meetings_SimpleORMap
 {
     public function __construct($id = null)
     {

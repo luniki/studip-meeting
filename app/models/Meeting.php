@@ -24,7 +24,7 @@ use ElanEv\Driver\MeetingParameters;
  * @property int       $chdate
  * @property Join[]    $joins
  */
-class Meeting extends \SimpleORMap
+class Meeting extends \Meetings_SimpleORMap
 {
     public function __construct($id = null)
     {

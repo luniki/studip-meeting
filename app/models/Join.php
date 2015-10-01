@@ -12,7 +12,7 @@ namespace ElanEv\Model;
  * @property string  $user_id
  * @property int     $last_join
  */
-class Join extends \SimpleORMap
+class Join extends \Meetings_SimpleORMap
 {
     public function __construct($id = null)
     {

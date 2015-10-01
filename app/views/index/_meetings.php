@@ -27,7 +27,7 @@ if ($showUser) {
 <form action="<?=$deleteAction?>" method="post">
     <input type="hidden" name="action" value="multi-delete">
 
-    <table class="default collapsable tablesorter conference-meetings<?=$canModifyMeetings ? ' admin': ''?>">
+    <table class="default collapsable tablesorter conference-meetings<?=$canModifyMeetings ? ' admin': ''?> zebra">
         <caption><?=$title?></caption>
         <colgroup>
             <? if ($canModifyMeetings): ?>
@@ -58,9 +58,6 @@ if ($showUser) {
             <th class="recording-url"><?=_('Aufzeichnung')?></th>
             <?php if ($showCourse): ?>
                 <th class="sortable">
-                    <?php if ($showInstitute): ?>
-                        <?=_('Heimat-Einrichtung')?><br>
-                    <?php endif ?>
                     <?= _('Veranstaltung') ?>
                 </th>
             <?php endif ?>
@@ -100,8 +97,8 @@ if ($showUser) {
                     </a>
                     <input type="text" name="name"><br>
                     <input type="text" name="recording_url" placeholder="<?=_('URL zur Aufzeichnung')?>">
-                    <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/grey/accept.png" class="accept-button" title="<?=_('Änderungen speichern')?>">
-                    <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/grey/decline.png" class="decline-button" title="<?=_('Änderungen verwerfen')?>">
+                    <img src="<?=$plugin->getAssetsUrl()?>/images/accept.png" class="accept-button" title="<?=_('Änderungen speichern')?>">
+                    <img src="<?=$plugin->getAssetsUrl()?>/images/decline.png" class="decline-button" title="<?=_('Änderungen verwerfen')?>">
                     <img src="<?=$GLOBALS['ASSETS_URL']?>/images/ajax_indicator_small.gif" class="loading-indicator">
                 </td>
                 <td class="recording-url">
@@ -111,9 +108,6 @@ if ($showUser) {
                 </td>
                 <?php if ($showCourse): ?>
                     <td>
-                        <?php if ($showInstitute): ?>
-                            <?=htmlReady($meetingCourse->course->home_institut->name)?><br>
-                        <?php endif ?>
                         <a href="<?=PluginEngine::getURL($plugin, array('cid' => $meetingCourse->course->id), 'index')?>">
                             <?=htmlReady($meetingCourse->course->name)?>
                         </a>
@@ -137,8 +131,8 @@ if ($showUser) {
                     </td>
                     <td class="active"><input type="checkbox"<?=$meetingCourse->active ? ' checked="checked"' : ''?> data-meeting-enable-url="<?=PluginEngine::getLink($plugin, array('destination' => $destination), 'index/enable/'.$meetingCourse->meeting->id.'/'.$meetingCourse->course->id)?>" title="<?=$meetingCourse->active ? _('Meeting für Teilnehmende unsichtbar schalten') : _('Meeting für Teilnehmende sichtbar schalten')?>"></td>
                     <td>
-                        <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/blue/info-circle.png" title="<?=_('Informationen anzeigen')?>" class="info">
-                        <a href="#" title="<?=_('Meeting bearbeiten')?>" class="edit-meeting" data-meeting-edit-url="<?=PluginEngine::getLink($plugin, array(), 'index/edit/'.$meetingCourse->meeting->id)?>"><img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/blue/edit.png"></a>
+                        <img src="<?=$plugin->getAssetsUrl()?>/images/info-circle.png" title="<?=_('Informationen anzeigen')?>" class="info">
+                        <a href="#" title="<?=_('Meeting bearbeiten')?>" class="edit-meeting" data-meeting-edit-url="<?=PluginEngine::getLink($plugin, array(), 'index/edit/'.$meetingCourse->meeting->id)?>"><img src="<?=$plugin->getAssetsUrl()?>/images/edit.png"></a>
                         <?php if ($meetingCourse->meeting->join_as_moderator): ?>
                             <a href="<?=$moderatorPermissionsUrl?>" title="<?=_('Teilnehmende haben VeranstalterInnen-Rechte')?>"><img src="<?=$plugin->getAssetsUrl()?>/images/moderator-enabled.png"></a>
                         <?php else: ?>
@@ -146,9 +140,9 @@ if ($showUser) {
                         <?php endif; ?>
                         <a href="<?=$deleteUrl?>" title="<?=count($meetingCourse->meeting->courses) > 1 ? _('Zuordnung löschen') : _('Meeting löschen')?>">
                             <?php if (count($meetingCourse->meeting->courses) > 1): ?>
-                                <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/blue/remove.png">
+                                <img src="<?=$plugin->getAssetsUrl()?>/images/remove.png">
                             <?php else: ?>
-                                <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/blue/trash.png">
+                                <img src="<?=$plugin->getAssetsUrl()?>/images/trash.png">
                             <?php endif ?>
                         </a>
                     </td>

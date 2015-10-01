@@ -144,16 +144,6 @@ class IndexController extends StudipController
                     'url' => PluginEngine::getLink($this->plugin, array(), 'index'),
                 )),
                 array(array(
-                    'label' => _('Informationen anzeigen'),
-                    'url' => '#',
-                    'icon' => 'icons/16/blue/info-circle.png',
-                    'attributes' => array(
-                        'class' => 'toggle-info show-info',
-                        'data-show-text' => _('Informationen anzeigen'),
-                        'data-hide-text' => _('Informationen ausblenden'),
-                    ),
-                )),
-                array(array(
                     'label' => _('Anpassen'),
                     'url' => PluginEngine::getLink($this->plugin, array(), 'index/config'),
                     'icon' => 'icons/16/blue/admin.png',
@@ -200,23 +190,6 @@ class IndexController extends StudipController
             );
             $this->buildMeetingBlocks(MeetingCourse::findByUser($user));
         }
-
-        $this->buildSidebar(
-            array(),
-            array(
-                $viewItem,
-                array(
-                    'label' => _('Informationen anzeigen'),
-                    'url' => '#',
-                    'icon' => 'icons/16/blue/info-circle.png',
-                    'attributes' => array(
-                        'class' => 'toggle-info show-info',
-                        'data-show-text' => _('Informationen anzeigen'),
-                        'data-hide-text' => _('Informationen ausblenden'),
-                    ),
-                )
-            )
-        );
     }
 
     public function all_action($type = null)
@@ -251,23 +224,6 @@ class IndexController extends StudipController
             );
             $this->buildMeetingBlocks(MeetingCourse::findAll());
         }
-
-        $this->buildSidebar(
-            array(),
-            array(
-                $viewItem,
-                array(
-                    'label' => _('Informationen anzeigen'),
-                    'url' => '#',
-                    'icon' => 'icons/16/blue/info-circle.png',
-                    'attributes' => array(
-                        'class' => 'toggle-info show-info',
-                        'data-show-text' => _('Informationen anzeigen'),
-                        'data-hide-text' => _('Informationen ausblenden'),
-                    ),
-                )
-            )
-        );
     }
 
     public function enable_action($meetingId, $courseId)
@@ -495,28 +451,49 @@ class IndexController extends StudipController
         return md5($this->getCourseId().'attPw');
     }
 
+    private function translateSidebar($data)
+    {
+        $results = array();
+
+        foreach ($data as $entry) {
+            $results[] = array(
+                'text' => '<a href="'. $entry['url'] .'">' . $entry['label'] . '</a>',
+                'icon' => $entry['icon']
+            );
+        }
+
+        return $results;
+    }
+
     private function buildSidebar($navigationItems = array(), $viewsItems = array(), $actionsItems = array())
     {
-        $sidebar = Sidebar::Get();
+        #$sidebar = Sidebar::Get();
+
+        #$this->infobox = array(array());
+
+        #var_Dump(func_get_args());
 
         $sections = array(
             array(
-                'label' => _('Navigation'),
-                'class' => 'sidebar-meeting-navigation',
-                'items' => $navigationItems,
+                'kategorie' => _('Navigation'),
+                'eintrag' => $this->translateSidebar($navigationItems),
             ),
             array(
-                'label' => _('Ansichten'),
-                'class' => 'sidebar-meeting-views',
-                'items' => $viewsItems,
+                'kategorie' => _('Ansichten'),
+                'eintrag' => $this->translateSidebar($viewsItems),
             ),
             array(
-                'label' => _('Aktionen'),
-                'class' => 'sidebar-meeting-actions',
-                'items' => $actionsItems,
+                'kategorie' => _('Aktionen'),
+                'eintrag' => $this->translateSidebar($actionsItems),
             ),
         );
 
+        $infobox = array('picture' => 'infobox/config.jpg');
+        $infobox['content'] = $sections;
+
+        $this->infobox = $infobox;
+
+        /*
         foreach ($sections as $section) {
             if (count($section['items']) > 0) {
                 $navigation = new ActionsWidget();
@@ -539,6 +516,8 @@ class IndexController extends StudipController
                 $sidebar->addWidget($navigation);
             }
         }
+         * 
+         */
     }
 
     private function buildMeetingBlocks(array $meetingCourses)
@@ -642,6 +621,7 @@ class IndexController extends StudipController
     private function getHelpbarContent($id)
     {
         /** @var \Helpbar $helpBar */
+        return;
 
         switch ($id) {
 

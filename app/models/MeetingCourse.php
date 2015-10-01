@@ -11,7 +11,7 @@ namespace ElanEv\Model;
  * @property \Course $course
  * @property bool    $active
  */
-class MeetingCourse extends \SimpleORMap
+class MeetingCourse extends \Meetings_SimpleORMap
 {
     public function __construct($id = null)
     {

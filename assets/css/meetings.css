@@ -57,3 +57,128 @@ form.create-conference-meeting input[type="text"] {
     width: 400px;
     display: inline;
 }
+
+
+.studip_form > fieldset {
+    position: relative;
+    padding-top: 3em;
+    border-color: #D4DBE5;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+}
+
+.studip_form > fieldset > legend {
+    background-color: #E7EBF1;
+    color: #24437C;
+    position: absolute;
+    top: 0px;
+    padding: 0px;
+    margin: 0px;
+    border: medium none;
+    line-height: 2em;
+    width: 100%;
+    left: 0px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-indent: 1ex;
+}
+
+.studip_form .caption {
+    font-weight: bold;
+    color: #24437C;
+    font-size: 11pt;
+}
+.studip_form > fieldset > label, .studip_form > fieldset > div {
+    text-indent: 0.25ex;
+    padding: 1ex;
+}
+.studip_form label {
+    display: block;
+}
+
+.studip_form > fieldset > label, .studip_form > fieldset > div {
+    text-indent: 0.25ex;
+}
+
+.studip_form label input[type="date"], .studip_form label input[type="email"], .studip_form label input[type="number"], .studip_form label input[type="password"], .studip_form label input[type="text"], .studip_form label input[type="url"], .studip_form label textarea, .studip_form label select {
+    display: block;
+    min-width: 24em;
+}
+
+.studip_form input[type="date"], .studip_form input[type="email"], .studip_form input[type="number"], .studip_form input[type="password"], .studip_form input[type="text"], .studip_form input[type="url"], .studip_form textarea, .studip_form select {
+    display: block;
+    padding: 5px;
+    border: 1px solid #CCC;
+    color: #333;
+    margin-top: 1ex;
+    transition: all 0.3s ease-out 0s;
+}
+
+table.default > caption {
+    background-color: transparent;
+    padding-top: 0px;
+    color: #444;
+    font-size: 1.4em;
+    text-align: left;
+}
+
+table.zebra tbody tr {
+   background-color: #F3F5F8;
+}
+
+table.zebra tbody tr:nth-child(4n+1),
+table.zebra tbody tr:nth-child(4n+2) {
+   background-color: #E7EBF1;
+}
+
+
+.modaloverlay {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0% 0% !important;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+    z-index: 9999 !important;
+    text-align: center !important;
+    opacity: 1 !important;
+}
+
+
+.modaloverlay::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+
+}
+
+.modaloverlay .messagebox {
+    background: transparent none no-repeat scroll 10px 10px;
+    border: 2px solid;
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 15px 15px 15px 55px;
+    text-align: center;    
+
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+    margin: auto;
+    position: relative;
+    max-height: 50%;
+    max-width: 50%;
+    width: 50%;
+    color: #000;
+    border-color: #FFBD33;
+    background-color: #FFF;
+    background-image: url("../images/messagebox/question.png");
+    background-size: 32px 32px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.modaloverlay .messagebox .content {
+    max-height: 200px;
+    overflow: auto;
+}

@@ -110,6 +110,7 @@ class AdminController extends StudipController
     {
         /** @var \Helpbar $helpBar */
 
+        return;
         switch ($id) {
 
             case 'main':
