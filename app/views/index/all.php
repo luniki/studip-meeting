@@ -6,6 +6,10 @@
 
 <?= $this->render_partial('index/_confirm_delete') ?>
 
+<? if (empty($meetings)) : ?>
+    <?= MessageBox::info(_('Es wurden bisher keine Meetings erstellt!')) ?>
+<? endif ?>
+
 <?php if ($type === 'name'): ?>
     <?=$this->render_partial('index/_meetings', array('title' => _('Alle Meetings'), 'canModifyMeetings' => true, 'destination' => 'index/all', 'showCourse' => true)) ?>
 <?php else: ?>

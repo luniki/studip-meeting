@@ -49,13 +49,13 @@ class MeetingPlugin extends StudipPlugin implements StandardPlugin, SystemPlugin
         /** @var \Seminar_Perm $perm */
         $perm = $GLOBALS['perm'];
         if ($perm->have_perm('root')) {
-            $item = new Navigation(_('Meetings'), PluginEngine::getLink($this, array(), 'index/all'));
+            $item = new Navigation(_('Meetingübersicht'), PluginEngine::getLink($this, array('cid' => null), 'index/all'));
             $item->setImage($GLOBALS['ASSETS_URL'].'/images/icons/16/white/chat.png');
 
             if (Navigation::hasItem('/admin/locations')) {
                 Navigation::addItem('/admin/locations/meetings', $item);
             } else {
-                Navigation::addItem('/meetings', $item);
+                Navigation::addItem('/admin/config/all_meetings', $item);
             }
 
             $item = new Navigation(_('Meetings konfigurieren'), PluginEngine::getLink($this, array(), 'admin/index'));

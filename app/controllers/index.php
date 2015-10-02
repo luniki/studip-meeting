@@ -197,10 +197,11 @@ class IndexController extends StudipController
         if (!$GLOBALS['perm']->have_perm('root')) {
             throw new AccessDeniedException(_('Sie brauchen Administrationsrechte.'));
         }
+
         if (Navigation::hasItem('/admin/locations/meetings')) {
             Navigation::activateItem('/admin/locations');
-        } elseif (Navigation::hasItem('/meetings')) {
-            Navigation::activateItem('/meetings');
+        } elseif (Navigation::hasItem('/admin/config/all_meetings')) {
+            Navigation::activateItem('/admin/config/all_meetings');
         }
 
         PageLayout::setTitle(_('Alle Meetings'));
