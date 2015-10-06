@@ -96,6 +96,8 @@ class IndexController extends StudipController
             Navigation::activateItem('/meetings');
         }
 
+        libxml_use_internal_errors(true);
+
         $this->courseConfig = CourseConfig::findByCourseId($this->getCourseId());
     }
 
@@ -150,10 +152,13 @@ class IndexController extends StudipController
                 ))
             );
         } else {
+            /*
             $this->buildSidebar(array(array(
                     'label' => $this->courseConfig->title,
                     'url' => PluginEngine::getLink($this->plugin, array(), 'index'),
             )));
+             * 
+             */
         }
 
         if ($this->canModifyCourse) {

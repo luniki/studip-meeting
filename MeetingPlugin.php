@@ -116,7 +116,7 @@ class MeetingPlugin extends StudipPlugin implements StandardPlugin, SystemPlugin
                 'title' => sprintf(_('%d Meeting(s), %d neue'), count($courses), $recentMeetings),
             ));
         } else {
-            $navigation->setImage('icons/20/grey/chat.png', array(
+            $navigation->setImage('icons/16/grey/chat.png', array(
                 'title' => sprintf(_('%d Meeting(s)'), count($courses)),
             ));
         }
