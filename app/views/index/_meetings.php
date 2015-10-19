@@ -103,7 +103,7 @@ if ($showUser) {
                 </td>
                 <td class="recording-url">
                     <a href="<?=$meetingCourse->meeting->recording_url?>" target="_blank" class="meeting-recording-url"<?=!$meetingCourse->meeting->recording_url ? ' style="display:none;"' : ''?>>
-                        <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/20/blue/video.png" title="<?=_('zur Aufzeichnung')?>">
+                        <img src="<?=$GLOBALS['ASSETS_URL']?>/images/icons/16/blue/video.png" title="<?=_('zur Aufzeichnung')?>">
                     </a>
                 </td>
                 <?php if ($showCourse): ?>
